@@ -1,0 +1,13 @@
+package protocol;
+
+option java_package = "protocol.Data";
+
+message GroupItem{
+	required string groupId = 1;
+	required string groupName = 2;
+	repeated string memberUserId = 3;
+	required string createrUserId = 4;
+
+}
+
+

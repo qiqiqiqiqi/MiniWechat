@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoggerRule>
+	<TypeContain>False</TypeContain>
+	<TypeList>
+		<ProtoHead logType="Network">KEEP_ALIVE_SYNC</ProtoHead>
+		<!-- <ProtoHead logType="class">server.Server_User</ProtoHead> -->
+	</TypeList>
+</LoggerRule>

@@ -1,0 +1,10 @@
+package protocol;
+
+option java_package = "protocol";
+enum ResultCoder {
+	SUCCESS = 0; //表示成功
+	FAIL = 1; //表示失败
+	USER_EXIST = 2; //表示用户名已存在
+}
+
+

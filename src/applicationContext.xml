@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	<!-- <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" 
+		xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd "> -->
+
+	<bean id="MinaServerHandle" class="server.MinaServerHandle">
+		<property name="clientRequest_Dispatcher">
+			<ref bean="ClientRequest_Dispatcher" />
+		</property>
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+	</bean>
+
+	<bean id="MyLogger" class="server.MyLogger">
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+	</bean>
+
+	<bean id="server" class="server.Server">
+		<property name="serverNetwork">
+			<ref bean="ServerNetwork" />
+		</property>
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+		<property name="serverModel_Chatting">
+			<ref bean="ServerModel_Chatting" />
+		</property>
+	</bean>
+
+	<bean id="ServerNetwork" class="server.ServerNetwork">
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+		<property name="clientRequest_Dispatcher">
+			<ref bean="ClientRequest_Dispatcher" />
+		</property>
+		<property name="minaServerHandle">
+			<ref bean="MinaServerHandle" />
+		</property>
+		<property name="myLogger">
+			<ref bean="MyLogger" />
+		</property>
+		<!-- <property name="protocolCodecFilter"> <ref bean="snmpCodecFilter" 
+			/> </property> -->
+	</bean>
+
+	<bean id="ServerModel" class="server.ServerModel">
+		<property name="serverNetwork">
+			<ref bean="ServerNetwork" />
+		</property>
+	</bean>
+
+	<bean id="ClientRequest_Dispatcher" class="server.ClientRequest_Dispatcher">
+		<property name="server_User">
+			<ref bean="Server_User" />
+		</property>
+		<property name="server_Friend">
+			<ref bean="Server_Friend" />
+		</property>
+		<property name="server_Chatting">
+			<ref bean="Server_Chatting" />
+		</property>
+	</bean>
+
+	<bean id="ServerModel_Chatting" class="server.ServerModel_Chatting">
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+		<property name="serverNetwork">
+			<ref bean="ServerNetwork" />
+		</property>
+	</bean>
+
+	<bean id="Server_Chatting" class="server.Server_Chatting">
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+		<property name="serverModel_Chatting">
+			<ref bean="ServerModel_Chatting" />
+		</property>
+		<property name="serverNetwork">
+			<ref bean="ServerNetwork" />
+		</property>
+		<property name="server_User">
+			<ref bean="Server_User" />
+		</property>
+	</bean>
+
+	<bean id="Server_Friend" class="server.Server_Friend">
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+		<property name="serverNetwork">
+			<ref bean="ServerNetwork" />
+		</property>
+		<property name="server_Chatting">
+			<ref bean="Server_Chatting" />
+		</property>
+	</bean>
+
+	<bean id="Server_User" class="server.Server_User">
+		<property name="serverModel">
+			<ref bean="ServerModel" />
+		</property>
+		<property name="serverNetwork">
+			<ref bean="ServerNetwork" />
+		</property>
+	</bean>
+
+</beans>
+    

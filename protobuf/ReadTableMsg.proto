@@ -1,0 +1,17 @@
+package protocol;
+
+option java_package = "protocol.Msg";
+import "Friend.proto";
+message ReadImportantTableReq {
+    required string userID = 1;
+}
+message ReadImportantTableRsp{
+	enum ResultCode{
+    	SUCCESS = 0;
+		FAIL = 1;
+	}
+
+	required ResultCode resultCode = 1;
+	repeated FriendItem friend=2;
+
+}
